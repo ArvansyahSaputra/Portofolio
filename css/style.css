@@ -1,0 +1,95 @@
+:root {
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Poppins", sans-serif;
+  --bg: #0f0f10;
+  --surface: #1a1a1d;
+  --border: #2a2a2e;
+  --text: #f2efea;
+  --text-muted: #9a9aa0;
+  --accent: #b23a48;
+  --accent-hover: #c9525f;
+}
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+}
+h1,
+h2,
+h3,
+.name {
+  font-family: var(--font-heading);
+}
+/* Intro Start */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+
+  background: rgba(0, 0, 0, 0.6); /* hitam transparan */
+  -webkit-backdrop-filter: blur(12px); /* untuk Safari */
+  backdrop-filter: blur(12px);
+
+  transition:
+    opacity 1s ease,
+    backdrop-filter 1s ease,
+    -webkit-backdrop-filter 1s ease,
+    visibility 1s;
+}
+.intro.hide {
+  opacity: 0;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  visibility: hidden; /* supaya tidak menghalangi klik */
+  pointer-events: none;
+}
+
+.welcome,
+.name {
+  grid-area: 1 / 1; /* dua-duanya menempati sel yang sama */
+  opacity: 0; /* sembunyi dulu sebelum gilirannya */
+}
+.welcome {
+  animation: welcomeFade 2.6s ease forwards;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+}
+.name span {
+  color: var(--accent);
+}
+.name {
+  animation: nameReveal 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  animation-delay: 2.6s; /* mulai setelah Welcome selesai */
+  font-weight: 600;
+  letter-spacing: 0.3em;
+}
+@keyframes welcomeFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes nameReveal {
+  from {
+    opacity: 1;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+/* Intro end */
