@@ -20,6 +20,7 @@ h3,
 .name {
   font-family: var(--font-heading);
 }
+
 /* Intro Start */
 .intro {
   position: fixed;
@@ -93,3 +94,57 @@ h3,
   }
 }
 /* Intro end */
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.navbar .profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.navbar ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.profile span {
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-heading);
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+.menu-nav {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.menuitem a {
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer; /* kursor berubah jadi tangan */
+  transition: color 0.3s ease;
+}
+
+.menuitem a:hover,
+.menuitem a:focus-visible {
+  color: var(--accent); /* warna berubah saat disorot */
+}
+/* Navbar end */
