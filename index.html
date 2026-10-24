@@ -20,19 +20,45 @@
     </div>
     <!-- Intro end -->
     <!-- Beranda -->
-    <div class="navbar">
-      <div class="profile">
-        <img src="assets/arfan.jpeg" alt="foto profile arfan" class="logo" />
-        <p class="nama-lengkap">Arfansyah Saputra <span>Portofolio</span></p>
-      </div>
-      <ul class="menu-nav">
-        <li class="menuitem"><a href="#home">Home</a></li>
-        <li class="menuitem"><a href="#about">About</a></li>
-        <li class="menuitem"><a href="#skills">Skills</a></li>
-        <li class="menuitem"><a href="#projects">Projects</a></li>
-        <li class="menuitem"><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
+    <header class="header">
+      <nav class="navbar">
+        <a class="profile">
+          <img
+            src="assets/IMG_9632.JPG.jpeg"
+            alt="foto profile arfan"
+            class="avatar"
+          />
+          <p class="nama-lengkap">Arfansyah Saputra <span>Portofolio</span></p>
+        </a>
+        <ul class="menu-nav" id="menu">
+          <li class="menuitem"><a href="#home">Home</a></li>
+          <li class="menuitem"><a href="#about">About</a></li>
+          <li class="menuitem"><a href="#skills">Skills</a></li>
+          <li class="menuitem"><a href="#projects">Projects</a></li>
+          <li class="menuitem"><a href="#contact">Contact</a></li>
+        </ul>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Buka menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home"></section>
+      <section id="about"></section>
+      <section id="skills"></section>
+      <section id="projects"></section>
+      <section id="contact"></section>
+    </main>
+
+    <footer></footer>
 
     <script src="js/main.js"></script>
   </body>

@@ -96,14 +96,20 @@ h3,
 /* Intro end */
 
 /* Navbar */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   z-index: 9998;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   align-items: center;
   padding: 1rem 2rem;
   background: rgba(0, 0, 0, 0.6);
@@ -115,20 +121,22 @@ h3,
   align-items: center;
   gap: 0.5rem;
 }
-.navbar ul {
+.profile {
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
 }
 .profile span {
   font-weight: 600;
   color: var(--accent);
   font-family: var(--font-heading);
 }
-.logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .menu-nav {
   display: flex;
@@ -146,5 +154,76 @@ h3,
 .menuitem a:hover,
 .menuitem a:focus-visible {
   color: var(--accent); /* warna berubah saat disorot */
+}
+
+/* Tombol hamburger (tersembunyi di desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--text);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Tablet & HP */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .menu-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface);
+
+    /* keadaan tertutup */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease,
+      visibility 0.4s;
+  }
+
+  .menu-nav.active {
+    max-height: 400px; /* keadaan terbuka */
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menuitem a {
+    display: block;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* garis tiga berubah jadi X */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 }
 /* Navbar end */
