@@ -1,19 +1,35 @@
 :root {
   --font-heading: "Poppins", sans-serif;
   --font-body: "Poppins", sans-serif;
-  --bg: #0f0f10;
-  --surface: #1a1a1d;
-  --border: #2a2a2e;
-  --text: #f2efea;
-  --text-muted: #9a9aa0;
-  --accent: #b23a48;
-  --accent-hover: #c9525f;
+  --bg: #0b0b0c;
+  --black-card: #141415;
+  --black-code: #101011;
+  --foto-ss: #1c1c1f;
+  --secsion-border: #26262a;
+  --border-button: #3a3a40;
+  --text: #f2f2f0;
+  --tautan: #c9c9cc;
+  --sekunder-text: #8e8e93;
+  --text-grad: #b03a4c;
+  --accent: #7a1f2b;
+  --accent-hover: #a12d3d;
 }
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
 }
+
 h1,
 h2,
 h3,
@@ -58,7 +74,7 @@ h3,
   letter-spacing: 0.2em;
 }
 .name span {
-  color: var(--accent);
+  color: var(--text-grad);
 }
 .name {
   animation: nameReveal 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
@@ -112,8 +128,7 @@ h3,
   align-items: center;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bg);
   backdrop-filter: blur(12px);
 }
 .navbar .profile {
@@ -126,26 +141,26 @@ h3,
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  font-weight: 600;
+  color: var(--text);
 }
 .profile span {
-  font-weight: 600;
-  color: var(--accent);
+  color: var(--text-grad);
   font-family: var(--font-heading);
 }
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+.nama-lengkap {
+  text-decoration: none;
 }
 .menu-nav {
   display: flex;
   gap: 2rem;
   list-style: none;
+  color: var(--text);
+  font-family: var(--font-heading);
 }
 
 .menuitem a {
-  color: var(--text-muted);
+  color: var(--text);
   text-decoration: none;
   cursor: pointer; /* kursor berubah jadi tangan */
   transition: color 0.3s ease;
@@ -153,7 +168,7 @@ h3,
 
 .menuitem a:hover,
 .menuitem a:focus-visible {
-  color: var(--accent); /* warna berubah saat disorot */
+  color: var(--accent-hover); /* warna berubah saat disorot */
 }
 
 /* Tombol hamburger (tersembunyi di desktop) */
@@ -227,3 +242,73 @@ h3,
   }
 }
 /* Navbar end */
+
+/* content home start*/
+.home {
+  background: var(--bg);
+}
+.early {
+  display: flex;
+  margin: 40px 30px;
+  justify-content: space-between;
+  font-size: 13px;
+  font-family: var(--font-body);
+}
+.interes {
+  display: flex;
+  border: 2px solid var(--secsion-border);
+  border-radius: 50px;
+  font-size: 0.9em;
+  padding: 4px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #800020;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 6px 5px 5px 5px;
+}
+
+.atention {
+  padding: 3px;
+}
+.content-home {
+  margin: 20px 30px;
+}
+.label-job {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #888;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-family: monospace;
+}
+.label-job::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: var(--accent);
+}
+.label-job::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: var(--accent);
+}
+.headline {
+  margin: 10px 0 10px 0;
+}
+.button-home {
+  margin: 20px 0 10px 0;
+}
+.btn-solid {
+  width: 150px;
+}
+.btn-outline {
+  width: 150px;
+}
+/* content home end */
