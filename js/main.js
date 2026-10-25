@@ -27,3 +27,52 @@ menu.querySelectorAll("a").forEach((link) => {
     hamburger.setAttribute("aria-expanded", "false");
   });
 });
+// ===== Efek mengetik =====
+const typingEl = document.getElementById("typing");
+
+// tiap potongan teks punya kelas warna (c)
+const tokens = [
+  { t: "const ", c: "kw" },
+  { t: "arfan", c: "var" },
+  { t: " = {\n  ", c: "" },
+  { t: "role", c: "key" },
+  { t: ": ", c: "" },
+  { t: '"Fullstack Developer"', c: "str" },
+  { t: ",\n  ", c: "" },
+  { t: "stack", c: "key" },
+  { t: ": ", c: "" },
+  { t: '["HTML", "CSS", "JS", "PHP", "MySQL"]', c: "str" },
+  { t: ",\n  ", c: "" },
+  { t: "fokus", c: "key" },
+  { t: ": ", c: "" },
+  { t: '"web rapi & fungsional"', c: "str" },
+  { t: ",\n  ", c: "" },
+  { t: "status", c: "key" },
+  { t: ": ", c: "" },
+  { t: '"learn anytime"', c: "hl" },
+  { t: ",\n};", c: "" },
+];
+
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function typeCode() {
+  while (true) {
+    typingEl.textContent = "";
+
+    for (const tok of tokens) {
+      const span = document.createElement("span");
+      span.className = tok.c;
+      typingEl.appendChild(span);
+
+      for (const ch of tok.t) {
+        span.textContent += ch;
+        await wait(ch === "\n" ? 250 : 45); // jeda lebih lama di baris baru
+      }
+    }
+
+    await wait(4000); // diam sebentar, lalu ulang dari awal
+  }
+}
+
+// mulai setelah intro selesai (4200 ms + sedikit jeda)
+setTimeout(typeCode, 4500);
