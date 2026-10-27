@@ -76,3 +76,11 @@ async function typeCode() {
 
 // mulai setelah intro selesai (4200 ms + sedikit jeda)
 setTimeout(typeCode, 4500);
+
+// card foto
+const flip = document.getElementById("flipPhoto");
+
+flip.addEventListener("click", () => {
+  const flipped = flip.classList.toggle("is-flipped");
+  flip.setAttribute("aria-pressed", flipped);
+});

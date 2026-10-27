@@ -2,6 +2,7 @@
   --font-heading: "Poppins", sans-serif;
   --font-body: "Poppins", sans-serif;
   --bg: #0b0b0c;
+  --surface-2: #1c1c1f;
   --black-card: #141415;
   --black-code: #101011;
   --foto-ss: #1c1c1f;
@@ -14,6 +15,8 @@
   --accent: #7a1f2b;
   --accent-hover: #a12d3d;
   --border-tag: #2e2e33;
+  --surface-2: #1c1c1f;
+  --line-strong: #3a3a40;
 }
 *,
 html,
@@ -492,36 +495,200 @@ h3,
 
 /* content about start */
 .about {
+  padding: 120px 0;
+  background: var(--black-card); /* #141415 */
+  border-top: 1px solid var(--secsion-border);
+  border-bottom: 1px solid var(--secsion-border);
+  color: var(--text);
+}
+
+.about__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 72px;
+}
+
+/* ---------- Foto ---------- */
+.about__photo {
+  flex: 0 1 340px;
+  width: 340px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Efek mengambang */
+.float {
+  position: relative;
   width: 100%;
-  height: 80vh;
-  justify-content: center;
-  background-color: var(--black-card);
+  animation: melayang 5s ease-in-out infinite;
+}
+@keyframes melayang {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
 }
 
-.kiri p {
-  font-family: var(--font-body);
-  color: #888;
-  font-family: monospace;
-}
-.line-about::before {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 3px;
-  background: var(--accent);
-}
-
-.card {
-  border: 1px solid var(--accent);
+/* Bingkai marun di belakang foto */
+.float__frame {
+  position: absolute;
+  inset: 16px -16px -16px 16px;
+  border: 2px solid var(--accent);
   border-radius: 8px;
-  width: 240px;
-  height: 260px;
+  pointer-events: none;
 }
-.card img {
+
+/* Bayangan di bawah yang mengecil saat foto naik */
+.float__shadow {
+  display: block;
+  width: 70%;
+  height: 14px;
+  margin-top: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  filter: blur(10px);
+  animation: bayangan 5s ease-in-out infinite;
+}
+@keyframes bayangan {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleX(0.75);
+    opacity: 0.35;
+  }
+}
+
+/* ---------- Flip card ---------- */
+.flip {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 420px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+}
+.flip:focus-visible {
+  outline: 2px solid var(--text-grad);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+.flip__inner {
+  position: relative;
+  display: block;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.flip.is-flipped .flip__inner {
+  transform: rotateY(180deg); /* balik horizontal */
 }
 
+.flip__face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--secsion-border);
+  background: var(--surface-2); /* #1C1C1F, tampil kalau foto belum ada */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip__face--back {
+  transform: rotateY(180deg);
+}
+.flip__face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about__hint {
+  margin: 20px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sekunder-text);
+}
+
+/* ---------- Teks ---------- */
+.about__content {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+.about__lead {
+  margin: 0 0 20px;
+  font-size: 19px;
+}
+.about__text {
+  margin: 0 0 40px;
+  color: var(--sekunder-text);
+}
+
+.about__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 0;
+  margin: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--secsion-border);
+}
+.about__facts > div {
+  flex: 1 1 180px;
+}
+.about__facts dt {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sekunder-text);
+}
+.about__facts dd {
+  margin: 6px 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 72px 0;
+  }
+  .about__wrap {
+    gap: 56px;
+  }
+  .flip {
+    height: 380px;
+  }
+}
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  .float,
+  .float__shadow {
+    animation: none;
+  }
+  .flip__inner {
+    transition-duration: 0.01s;
+  }
+}
 /* content about end */
 /* content skill start */
 .container {
@@ -698,3 +865,367 @@ h3,
   }
 }
 /* content skill end */
+
+/* content project start*/
+.projects {
+  background: var(--black-card); /* #141415 */
+  border-top: 1px solid var(--secsion-border);
+  border-bottom: 1px solid var(--secsion-border);
+  color: var(--text);
+  padding: 120px 0;
+}
+
+/* Grid: 2 kolom di desktop, 1 kolom di HP */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 32px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg); /* #0B0B0C */
+  border: 1px solid var(--secsion-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    border-color 0.25s,
+    transform 0.25s;
+}
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+/* Thumbnail */
+.project-card__thumb {
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 28px;
+  box-sizing: border-box;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--secsion-border);
+}
+.project-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* kalau pakai gambar asli, hilangkan padding thumbnail */
+.project-card__thumb:has(img) {
+  padding: 0;
+}
+
+.project-card__thumb--empty {
+  align-items: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sekunder-text);
+}
+
+/* Garis-garis dekoratif untuk project 01 */
+.bar {
+  display: block;
+  height: 10px;
+  border-radius: 4px;
+  background: var(--secsion-border);
+}
+.bar--short {
+  width: 40%;
+  background: var(--border-tag);
+}
+.bar--long {
+  width: 85%;
+}
+.bar--mid {
+  width: 70%;
+}
+.bar--btn {
+  width: 24%;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  margin-top: 8px;
+}
+
+/* Isi kartu */
+.project-card__body {
+  padding: 28px;
+}
+
+.project-card__title {
+  margin: 0 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+}
+.project-card__desc {
+  margin: 0 0 20px;
+  font-size: 16px;
+  color: var(--sekunder-text);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+.chips li {
+  padding: 4px 12px;
+  border: 1px solid var(--secsion-border);
+  border-radius: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--tautan);
+}
+
+.project-card__links {
+  display: flex;
+  gap: 24px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.project-card__links a {
+  color: var(--tautan);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--line-strong);
+  transition:
+    color 0.25s,
+    border-color 0.25s;
+}
+.project-card__links a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .projects {
+    padding: 72px 0;
+  }
+  .project-card__thumb {
+    height: 200px;
+  }
+  .project-card__body {
+    padding: 22px;
+  }
+}
+/* content project end */
+
+/* content contact start */
+.contact {
+  padding: 120px 0 112px;
+  color: var(--text);
+  background-color: var(--bg);
+  /* kotak-kotak tipis, tanpa gradasi marun */
+  background-image:
+    linear-gradient(#141415 1px, transparent 1px),
+    linear-gradient(90deg, #141415 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.contact__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 64px;
+  margin-top: 20px;
+}
+
+/* ---------- Kiri ---------- */
+.contact__intro {
+  flex: 1 1 440px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.status-pill {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid var(--secsion-border);
+  border-radius: 999px;
+  background: var(--bg);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--tautan);
+}
+.status-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-grad);
+  box-shadow: 0 0 0 4px #2a1215;
+}
+
+.contact__title {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.contact__title span {
+  color: var(--text-grad);
+}
+
+.contact__text {
+  margin: 0;
+  max-width: 460px;
+  font-size: 19px;
+  color: var(--sekunder-text);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+/* Tombol */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+}
+.btn--solid {
+  background: var(--text);
+  color: var(--bg);
+}
+.btn--solid:hover {
+  background: #a12d3d;
+  color: var(--text);
+}
+.btn--line {
+  padding: 15px 30px;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+}
+.btn--line:hover {
+  border-color: var(--accent);
+}
+
+/* ---------- Kanan ---------- */
+.contact__list {
+  flex: 1 1 400px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 22px;
+  background: var(--black-card);
+  border: 1px solid var(--secsion-border);
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+.contact-row__icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border-tag);
+  border-radius: 10px;
+  color: var(--tautan);
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+.contact-row__text {
+  flex: 1;
+  min-width: 0;
+}
+.contact-row__label {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sekunder-text);
+}
+.contact-row__value {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+  overflow-wrap: anywhere;
+}
+.contact-row__arrow {
+  flex: none;
+  font-size: 20px;
+  color: var(--sekunder-text);
+  transition:
+    transform 0.25s,
+    color 0.25s;
+}
+
+.contact-row:hover {
+  border-color: var(--accent);
+  background: #1a1a1c;
+}
+.contact-row:hover .contact-row__icon {
+  border-color: var(--accent);
+  color: var(--text-grad);
+}
+.contact-row:hover .contact-row__arrow {
+  transform: translateX(4px);
+  color: var(--text-grad);
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 72px 0;
+  }
+  .contact__title {
+    font-size: 52px;
+  }
+  .contact-row {
+    padding: 16px;
+    gap: 14px;
+  }
+  .contact-row__value {
+    font-size: 16px;
+  }
+}
+/* content contact start */
