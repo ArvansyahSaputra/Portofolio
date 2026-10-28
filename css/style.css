@@ -915,6 +915,7 @@ h3,
   height: 100%;
   object-fit: cover;
   display: block;
+  margin: 20px 0 0 0;
 }
 /* kalau pakai gambar asli, hilangkan padding thumbnail */
 .project-card__thumb:has(img) {
@@ -1009,7 +1010,9 @@ h3,
   color: var(--text);
   border-color: var(--accent);
 }
-
+.proj1 {
+  margin: 0;
+}
 @media (max-width: 600px) {
   .projects {
     padding: 72px 0;
