@@ -40,7 +40,61 @@ h3,
 .name {
   font-family: var(--font-heading);
 }
+.desktop-only {
+  display: none;
+}
 
+/* Aktif di layar sempit atau perangkat sentuh (HP & tablet) */
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  body > *:not(.desktop-only) {
+    display: none !important;
+  }
+
+  .desktop-only {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #0b0b0c;
+    color: #f2f2f0;
+    text-align: center;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  .desktop-only__box {
+    max-width: 420px;
+  }
+  .desktop-only__label {
+    margin: 0 0 16px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8e8e93;
+  }
+  .desktop-only h1 {
+    margin: 0 0 16px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 32px;
+    line-height: 1.15;
+  }
+  .desktop-only p {
+    color: #8e8e93;
+    line-height: 1.7;
+  }
+  .desktop-only__btn {
+    margin-top: 24px;
+    padding: 14px 28px;
+    border: 0;
+    border-radius: 8px;
+    background: #f2f2f0;
+    color: #0b0b0c;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
 /* Intro Start */
 .intro {
   position: fixed;

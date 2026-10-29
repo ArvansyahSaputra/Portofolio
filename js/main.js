@@ -45,7 +45,7 @@ const tokens = [
   { t: ",\n  ", c: "" },
   { t: "fokus", c: "key" },
   { t: ": ", c: "" },
-  { t: '"web rapi & fungsional"', c: "str" },
+  { t: '"fungsional"', c: "str" },
   { t: ",\n  ", c: "" },
   { t: "status", c: "key" },
   { t: ": ", c: "" },
@@ -84,3 +84,16 @@ flip.addEventListener("click", () => {
   const flipped = flip.classList.toggle("is-flipped");
   flip.setAttribute("aria-pressed", flipped);
 });
+
+const copyBtn = document.getElementById("copyLink");
+
+if (copyBtn) {
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      copyBtn.textContent = "Link tersalin ✓";
+    } catch {
+      copyBtn.textContent = "Salin manual dari kolom alamat";
+    }
+  });
+}
